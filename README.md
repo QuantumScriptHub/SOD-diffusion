@@ -1,5 +1,5 @@
-# SOD-diffusion: 
-### Diffusion Model for Salient Object Detection
+# SOD-diffusion
+## Diffusion Model for Salient Object Detection
 ![Static Badge](https://img.shields.io/badge/Apache-blue?style=flat&label=license&labelColor=black&color=blue)
 ![Static Badge](https://img.shields.io/badge/passing-green?style=flat&label=build&labelColor=black&color=green)
 ![Static Badge](https://img.shields.io/badge/passing-green?style=flat&label=circleci&labelColor=black&color=green)
