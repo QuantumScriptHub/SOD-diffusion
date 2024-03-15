@@ -1,4 +1,14 @@
-# SOD-diffusion: Diffusion Model for Salient Object Detection
+# SOD-diffusion: 
+### Diffusion Model for Salient Object Detection
+![Static Badge](https://img.shields.io/badge/Apache-blue?style=flat&label=license&labelColor=black&color=blue)
+![Static Badge](https://img.shields.io/badge/passing-green?style=flat&label=build&labelColor=black&color=green)
+![Static Badge](https://img.shields.io/badge/passing-green?style=flat&label=circleci&labelColor=black&color=green)
+![Static Badge](https://img.shields.io/badge/welcome-green?style=flat&label=PRs&labelColor=black&color=green)
+![Static Badge](https://img.shields.io/badge/Python-green?style=flat&label=Language&labelColor=black&color=green)
+## Overview
+<div style="text-align: justify;">
+Salient Object Detection (SOD) is a challenging task that aims to precisely identify and segment the salient objects. However, existing methods still face challenges in attaining explicit predictions near the edges or lack the capability for end-to-end training. To alleviate the problem, we propose SOD-diffusion, a new framework that formulates salient object detection as a denoising diffusion process from noisy masks to object masks. Specifically, object masks diffuse from ground-truth masks to random distribution in latent space, and the model learns to reverse this noising process to reconstruct object masks. To enhance the denoising learning process, we utilize a cross-attention mechanism to integrate conditional semantic features from the input image with diffusion noise embedding. Extensive experiments on five widely used SOD benchmark datasets demonstrate that our proposed SOD-diffusion achieves favorable performance compared to previous well-established methods. Besides, by leveraging the outstanding generalization capability of SOD-diffusion, we also applied SOD-diffusion on 2000 publicly available images, generating high-quality masks as an additional SOD benchmark dataset.
+</div>
 
 ## Datasets
 All datasets are available in public.
