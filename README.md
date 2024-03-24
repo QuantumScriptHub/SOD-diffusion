@@ -24,9 +24,11 @@ Salient Object Detection (SOD) is a challenging task that aims to precisely iden
 </div>
 
 <div style="display:flex; justify-content:space-between;">
-    <img src="result/finaltrain.pdf" width="40%">
-    <img src="result/finalinfer.pdf" width="50%">
+    <img src="result/finaltrain.png" width="48%">
+    <img src="result/finalinfer.png" width="48%">
 </div>
+
+The left image shows the training process, while the right one illustrates the inference process.
 
 ## ⬇ Datasets
 **All datasets are available in public**.
@@ -52,33 +54,38 @@ You can click the link to download them and proceed directly with inference.
 
 #### Training
 
---pretrained_model_name_or_path : [Pretrained model path](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
-
---swinb_model_path : Pretrained [Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.  
-
---train_img_list : img_list.txt, including the absolute path of all train images.  
-
---train_gt_list : gt_list.txt, including the absolute path all ground truth masks.  
-
---val_img : Path of the validation set of images.  
-
---val_gt : Path of the validation set of ground truth masks.
+- --pretrained_model_name_or_path : [Pretrained model path](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
+- --swinb_model_path : Pretrained [Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.  
+- --train_img_list : img_list.txt, including the absolute path of all train images.  
+- --train_gt_list : gt_list.txt, including the absolute path all ground truth masks.  
+- --val_img : Path of the validation set of images.  
+- --val_gt : Path of the validation set of ground truth masks.
 
 #### Inference 
 
---input_rgb_path : The local path of the image to be inferred.
+- --input_rgb_path : The local path of the image to be inferred.
+- --output_dir : The output path of the image after inference.
+- --stable_diffusion_repo_path : [Pretrained model path](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
+- --pretrained_model_path : The path of the best checkpoint saved by the model you trained，you can also use the [checkpoint](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) we trained, load them into a local path, and proceed with inference directly.
+- --swinb_model_path : Pretrained [Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.
 
---output_dir : The output path of the image after inference.
-
---stable_diffusion_repo_path : [Pretrained model path](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
-
---pretrained_model_path : The path of the best checkpoint saved by the model you trained，you can also use the [checkpoint](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) we trained, load them into a local path, and proceed with inference directly.
-
---swinb_model_path : Pretrained [Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.
+The default settings are optimized for the best result. However, the behavior of the code can be customized:
+- Trade-offs between the **accuracy** and **speed** (for both options, larger values result in better accuracy at the cost of slower inference.)
+  - `--ensemble_size`: Number of inference passes in the ensemble. Default: 10.
+  - `--denoise_steps`: Number of denoising steps of each inference pass. Default: 10.
+- `--half_precision`: Run with half-precision (16-bit float) to reduce VRAM usage, might lead to suboptimal result.
+- By default, the inference script resizes input images to the *processing resolution*, and then resizes the prediction back to the original resolution. This gives the best quality, as Stable Diffusion, from which SOD-diffusion is derived, performs best at 384x38 resolution.  
+  - `--processing_res`: the processing resolution; set 0 to process the input resolution directly. Default: 384.
+  - `--output_processing_res`: produce output at the processing resolution instead of upsampling it to the input resolution. Default: False.
+- `--seed`: Random seed can be set to ensure additional reproducibility. Default: None (using current time as random seed).
+- `--batch_size`: Batch size of repeated inference. Default: 0 (best value determined automatically).
 
 ## 💻 Testing on your images
 
 Run **train.sh** and **inference.sh** scripts.
+```bash
+git clone https://github.com/QuantumScriptHub/SOD-diffusion.git
+```
 #### For training
 ```bash
 cd scripts
@@ -89,7 +96,6 @@ bash train.sh
 cd scripts
 bash inference.sh
 ```
-
 
 ## 🎫 License
 
