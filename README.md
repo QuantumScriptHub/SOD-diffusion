@@ -18,8 +18,14 @@ We present SOD-diffusion, a diffusion model and associated fine-tuning protocol 
 Our model, derived from Stable Diffusion and fine-tuned with SOD benchmark data, can zero-shot transfer to unseen datasets, offering state-of-the-art salient Object detection results. Benefiting from this feature, we conducted inference on the COCO dataset, which has never been used for saliency detection before, and generated finely detailed saliency object masks, thus constructing a new [SOD benchmark dataset](https://drive.google.com/file/d/1X4hG1rxoUwxtWOhmEBJAf5FxIm_htmO1/view?usp=drive_link). The first line represents the input image, and the second line shows the generated saliency object mask. 
 
 ##  📢 Overview
+
 <div style="text-align: justify;">
 Salient Object Detection (SOD) is a challenging task that aims to precisely identify and segment the salient objects. However, existing methods still face challenges in attaining explicit predictions near the edges or lack the capability for end-to-end training. To alleviate the problem, we propose SOD-diffusion, a new framework that formulates salient object detection as a denoising diffusion process from noisy masks to object masks. Specifically, object masks diffuse from ground-truth masks to random distribution in latent space, and the model learns to reverse this noising process to reconstruct object masks. To enhance the denoising learning process, we utilize a cross-attention mechanism to integrate conditional semantic features from the input image with diffusion noise embedding. Extensive experiments on five widely used SOD benchmark datasets demonstrate that our proposed SOD-diffusion achieves favorable performance compared to previous well-established methods. Besides, by leveraging the outstanding generalization capability of SOD-diffusion, we also applied SOD-diffusion on 2000 publicly available images, generating high-quality masks as an additional SOD benchmark dataset.
+</div>
+
+<div style="display:flex; justify-content:space-between;">
+    <img src="result/finaltrain.pdf" width="40%">
+    <img src="result/finalinfer.pdf" width="50%">
 </div>
 
 ## ⬇ Datasets
@@ -30,35 +36,67 @@ Salient Object Detection (SOD) is a challenging task that aims to precisely iden
 * Download the ECSSD from [Here](https://www.cse.cuhk.edu.hk/leojia/projects/hsaliency/dataset.html)
 * Download the PASCAL-S from [Here](http://cbs.ic.gatech.edu/salobj/)
   
-## Requirements
+## 🛠️  Dependencies
 ```bash
 * Python >= 3.8.x
 * Pytorch >= 2.0.1
 * diffusers >= 0.25.1
 * pip install -r requirements.txt
 ```
+## 📦 Checkpoint cache
 
-## Run
+By default, our [checkpoint](https://drive.google.com/file/d/1mZGZZzg1eWzv-U6jw8ILp9u8rGr4Bhxv/view) and [SwinB backbone](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view) are stored in Google Drive.
+You can click the link to download them and proceed directly with inference.
+
+## ⚙ Configurations
+
+#### Training
+
+--pretrained_model_name_or_path : [Pretrained model path](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
+
+--swinb_model_path : Pretrained [Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.  
+
+--train_img_list : img_list.txt, including the absolute path of all train images.  
+
+--train_gt_list : gt_list.txt, including the absolute path all ground truth masks.  
+
+--val_img : Path of the validation set of images.  
+
+--val_gt : Path of the validation set of ground truth masks.
+
+#### Inference 
+
+--input_rgb_path : The local path of the image to be inferred.
+
+--output_dir : The output path of the image after inference.
+
+--stable_diffusion_repo_path : [Pretrained model path](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
+
+--pretrained_model_path : The path of the best checkpoint saved by the model you trained，you can also use the [checkpoint](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) we trained, load them into a local path, and proceed with inference directly.
+
+--swinb_model_path : Pretrained [Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.
+
+## 💻 Testing on your images
+
 Run **train.sh** and **inference.sh** scripts.
-#### For training SOD-diffusion
+#### For training
 ```bash
 cd scripts
 bash train.sh
 ```
-#### For inference SOD-diffusion
+#### For inference
 ```bash
 cd scripts
 bash inference.sh
 ```
 
 
-## Configurations
-```bash
---pretrained_model_name_or_path: pretrained model path from hugging face or local dir.  
---swinb_model_path: pretrained swinb model.  
---train_img_list: img_list.txt, including the absolute path of all train images.  
---train_gt_list: gt_list.txt, including the absolute path all ground truth masks.  
---val_img: path of the validation set of images.  
---val_gt: path of the validation set of ground truth masks.
-```
+## 🎫 License
+
+This work is licensed under the Apache License, Version 2.0 (as defined in the [LICENSE](LICENSE.txt)).
+
+By downloading and using the code and model you agree to the terms in the  [LICENSE](LICENSE.txt).
+
+[![License](https://img.shields.io/badge/License-Apache--2.0-929292)](https://www.apache.org/licenses/LICENSE-2.0)
+
 
