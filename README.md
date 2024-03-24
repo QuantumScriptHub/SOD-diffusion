@@ -74,25 +74,22 @@ The default settings are optimized for the best result. However, the behavior of
   - `--ensemble_size`: Number of inference passes in the ensemble. Default: 10.
   - `--denoise_steps`: Number of denoising steps of each inference pass. Default: 10.
 - `--half_precision`: Run with half-precision (16-bit float) to reduce VRAM usage, might lead to suboptimal result.
-- By default, the inference script resizes input images to the *processing resolution*, and then resizes the prediction back to the original resolution. This gives the best quality, as Stable Diffusion, from which SOD-diffusion is derived, performs best at 384x38 resolution.  
+- By default, the inference script resizes input images to the *processing resolution*, and then resizes the prediction back to the original resolution. This gives the best quality, as Stable Diffusion, from which SOD-diffusion is derived, performs best at 384x384 resolution.  
   - `--processing_res`: the processing resolution; set 0 to process the input resolution directly. Default: 384.
   - `--output_processing_res`: produce output at the processing resolution instead of upsampling it to the input resolution. Default: False.
 - `--seed`: Random seed can be set to ensure additional reproducibility. Default: None (using current time as random seed).
 - `--batch_size`: Batch size of repeated inference. Default: 0 (best value determined automatically).
 
 ## 💻 Testing on your images
-
-Run **train.sh** and **inference.sh** scripts.
+### 📷 Prepare images
+If you have images at hand, skip this step. Otherwise, download a few images from [Here](http://saliencydetection.net/duts/download/DUTS-TE.zip):
+### 🎮 Training and  Inference
+Run **train.sh** and **inference.sh** scripts for  training and  inference.
 ```bash
 git clone https://github.com/QuantumScriptHub/SOD-diffusion.git
-```
-#### For training
-```bash
 cd scripts
 bash train.sh
-```
-#### For inference
-```bash
+
 cd scripts
 bash inference.sh
 ```
