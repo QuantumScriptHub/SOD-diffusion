@@ -54,7 +54,7 @@ You can click the link to download them and proceed directly with inference.
 
 #### Training
 
-- --pretrained_model_name_or_path : [Pretrained model] path(https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
+- --pretrained_model_name_or_path : [Pretrained model](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) path for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
 - --swinb_model_path : [Pretrained Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.  
 - --train_img_list : img_list.txt, including the absolute path of all train images.  
 - --train_gt_list : gt_list.txt, including the absolute path all ground truth masks.  
@@ -65,9 +65,9 @@ You can click the link to download them and proceed directly with inference.
 
 - --input_rgb_path : The local path of the image to be inferred.
 - --output_dir : The output path of the image after inference.
-- --stable_diffusion_repo_path : [Pretrained model] path(https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
+- --stable_diffusion_repo_path : [Pretrained model](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) path for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
 - --pretrained_model_path : The path of the best checkpoint saved by the model you trained，you can also use the [checkpoint](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) we trained, load them into a local path, and proceed with inference directly.
-- --swinb_model_path : [Pretrained Swinb backbone model] (https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.
+- --swinb_model_path :  [Pretrained Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path. 
 
 The default settings are optimized for the best result. However, the behavior of the code can be customized:
 - Trade-offs between the **accuracy** and **speed** (for both options, larger values result in better accuracy at the cost of slower inference.)
