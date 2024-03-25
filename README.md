@@ -57,7 +57,7 @@ You can click the link to download them and proceed directly with inference.
 - --pretrained_model_name_or_path : [Pretrained model](https://huggingface.co/stabilityai/stable-diffusion-2/tree/main) path for stable-diffusion-2 from hugging face, you need to download it and place it in a local directory.
 - --swinb_model_path : [Pretrained Swinb backbone model](https://drive.google.com/file/d/1YK4h_jgQU-PuvgIvlle9JDonxND4uUeQ/view), you need to download it and place it in the corresponding local path.  
 - --train_img_list : img_list.txt, including the absolute path of all train images.  
-- --train_gt_list : gt_list.txt, including the absolute path all ground truth masks.  
+- --train_gt_list : gt_list.txt, including the absolute path of all ground truth masks.  
 - --val_img : Path of the validation set of images.  
 - --val_gt : Path of the validation set of ground truth masks.
 
